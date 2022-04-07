@@ -52,9 +52,9 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <h1 class="text-success">product</h1>
+       <button class="btn btn-success"><i class="bi bi-plus-square-fill"></i>Add Product</button>
+       <div id="productFetch"></div>
 
-            
 
 
       </div>
@@ -110,7 +110,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-
+ jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000));
 
 
 
