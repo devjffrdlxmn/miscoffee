@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport"  http-equiv="Content-Type" content="width=device-width, initial-scale=1">
   <title>MIS COFFEE</title>
-
+  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-  
+  <script src="https://kit.fontawesome.com/930a17464c.js" crossorigin="anonymous"></script>
    <!-- MY CSS -->
    <link rel="stylesheet" href="dist/css/style.css">
 

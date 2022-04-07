@@ -29,16 +29,33 @@
          
 
           <li class="nav-item">
-            <a href="generatePDF.php" class="nav-link" target="_blank">
-              <i class="fa fa-list-alt nav-icon"></i>
-              <p>Voting Result Summary </p>
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>Product Page </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>Product Type Page</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>Product Category Page</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="addOns.php" class="nav-link">
+            <i class="nav-icon fas fa-list"></i>
+              <p>Add-ons Page</p>
             </a>
           </li>
           
-        
-          
-              
-  
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
