@@ -43,7 +43,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="category.php" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Product Category Page</p>
             </a>
