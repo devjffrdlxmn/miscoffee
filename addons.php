@@ -172,19 +172,35 @@ function addAddons(){
 	  warningfunction("Enter details!");
     return false;
   }
+  Swal.fire({
+		/*put inside the functions*/
+	  position: 'center',
+	  icon: 'question',
+	  text: 'Do you want to delete this category?',
+	  showConfirmButton: true,
+	  showCancelButton: true,
+	  confirmButtonColor: 'green',
+	  confirmButtonText: 'CONFIRM',
+	  cancelButtonColor: 'red',
+	  cancelButtonText: 'CANCEL',
+	  timer: 0
+	}).then((result) => {
+		if (result.isConfirmed) {
 
-	//send value to server
-	var formdata = new FormData();
-	formdata.append("name", name);
-  formdata.append("price", price);
-  formdata.append("stock", stock);
-	
-	ajaxau.upload.addEventListener("progress", progressHandlerau, false);
-	ajaxau.addEventListener("load", completeHandlerau, false);
-	ajaxau.addEventListener("error", errorHandlerau, false);
-	ajaxau.addEventListener("abort", abortHandlerau, false);
-	ajaxau.open("POST", "addons_save.php");
-	ajaxau.send(formdata);
+    //send value to server
+    var formdata = new FormData();
+    formdata.append("name", name);
+    formdata.append("price", price);
+    formdata.append("stock", stock);
+    
+    ajaxau.upload.addEventListener("progress", progressHandlerau, false);
+    ajaxau.addEventListener("load", completeHandlerau, false);
+    ajaxau.addEventListener("error", errorHandlerau, false);
+    ajaxau.addEventListener("abort", abortHandlerau, false);
+    ajaxau.open("POST", "addons_save.php");
+    ajaxau.send(formdata);
+    }
+	});	
 }
 
 function progressHandlerau(event){
@@ -239,19 +255,36 @@ function updateAddons(){
     return false;
   }
 
-	//send value to server
-	var formdata = new FormData();
-  formdata.append("id", updateid);
-	formdata.append("name", updatename);
-  formdata.append("price", updateprice);
-  formdata.append("stock", updatestock);
-	
-	ajaxup.upload.addEventListener("progress", progressHandlerup, false);
-	ajaxup.addEventListener("load", completeHandlerup, false);
-	ajaxup.addEventListener("error", errorHandlerup, false);
-	ajaxup.addEventListener("abort", abortHandlerup, false);
-	ajaxup.open("POST", "addons_update.php");
-	ajaxup.send(formdata);
+  Swal.fire({
+		/*put inside the functions*/
+	  position: 'center',
+	  icon: 'question',
+	  text: 'Do you want to delete this category?',
+	  showConfirmButton: true,
+	  showCancelButton: true,
+	  confirmButtonColor: 'green',
+	  confirmButtonText: 'CONFIRM',
+	  cancelButtonColor: 'red',
+	  cancelButtonText: 'CANCEL',
+	  timer: 0
+	}).then((result) => {
+		if (result.isConfirmed) {
+
+    //send value to server
+    var formdata = new FormData();
+    formdata.append("id", updateid);
+    formdata.append("name", updatename);
+    formdata.append("price", updateprice);
+    formdata.append("stock", updatestock);
+    
+    ajaxup.upload.addEventListener("progress", progressHandlerup, false);
+    ajaxup.addEventListener("load", completeHandlerup, false);
+    ajaxup.addEventListener("error", errorHandlerup, false);
+    ajaxup.addEventListener("abort", abortHandlerup, false);
+    ajaxup.open("POST", "addons_update.php");
+    ajaxup.send(formdata);
+    }
+	});	
 }
 
 function progressHandlerup(event){
@@ -293,17 +326,34 @@ var ajax = new XMLHttpRequest();
 function deleteAddons(del_id){
 	//getting values of inputs
 
-	//send value to server
-	var formdata = new FormData();
-	formdata.append("id", del_id);
+  Swal.fire({
+		/*put inside the functions*/
+	  position: 'center',
+	  icon: 'question',
+	  text: 'Do you want to delete this add-ons?',
+	  showConfirmButton: true,
+	  showCancelButton: true,
+	  confirmButtonColor: 'green',
+	  confirmButtonText: 'CONFIRM',
+	  cancelButtonColor: 'red',
+	  cancelButtonText: 'CANCEL',
+	  timer: 0
+	}).then((result) => {
+		if (result.isConfirmed) {
 
-	
-	ajax.upload.addEventListener("progress", progressHandler, false);
-	ajax.addEventListener("load", completeHandler, false);
-	ajax.addEventListener("error", errorHandler, false);
-	ajax.addEventListener("abort", abortHandler, false);
-	ajax.open("POST", "addons_delete.php");
-	ajax.send(formdata);
+    //send value to server
+    var formdata = new FormData();
+    formdata.append("id", del_id);
+
+    
+    ajax.upload.addEventListener("progress", progressHandler, false);
+    ajax.addEventListener("load", completeHandler, false);
+    ajax.addEventListener("error", errorHandler, false);
+    ajax.addEventListener("abort", abortHandler, false);
+    ajax.open("POST", "addons_delete.php");
+    ajax.send(formdata);
+    }
+	});
 }
 
 function progressHandler(event){
