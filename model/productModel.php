@@ -1,5 +1,5 @@
 <?php  
-	class product
+	class Product
 	{
 		private $host = 'localhost';
 		private $username = "root";
@@ -20,6 +20,19 @@
 			}
 		}
 
+        function getProductInfo()
+        {
+			$sqlProduct = "SELECT tbl_product.id,tbl_product.name,tbl_product.price,tbl_product.stocks,
+            tbl_category.category_name,tbl_type.type_name FROM tbl_product 
+            INNER JOIN tbl_category ON tbl_category.category_id  = tbl_product.category_id 
+            INNER JOIN tbl_type ON tbl_type.type_id = tbl_product.type_id ";
+
+            $stmt = $this->db->prepare($sqlProduct);
+            $stmt->execute();
+            $products = $stmt->fetchAll();
+			return $products;
+        }
+      
         
 	
 
