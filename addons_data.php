@@ -14,8 +14,8 @@ $caller=new addOns();
         <tr>
 			<th bgcolor="#101820" style="color:white;padding-left:15px;">No.</th>
             <th bgcolor="#101820" style="color:white;padding-left:15px;">Name</th>
-            <th bgcolor="#101820" style="color:white;padding-left:15px;">Numerical Rating</th>
-            <th bgcolor="#101820" style="color:white;padding-left:15px;">Descriptive Rating</th>
+            <th bgcolor="#101820" style="color:white;padding-left:15px;">Price</th>
+            <th bgcolor="#101820" style="color:white;padding-left:15px;">Stocks</th>
 			<th bgcolor="#101820" style="color:white;padding-left:15px;">Report</th>
         </tr>
     </thead>

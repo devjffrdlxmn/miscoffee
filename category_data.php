@@ -14,8 +14,6 @@ $caller=new category();
         <tr>
 			<th bgcolor="#101820" style="color:white;padding-left:15px;">No.</th>
             <th bgcolor="#101820" style="color:white;padding-left:15px;">Name</th>
-            <th bgcolor="#101820" style="color:white;padding-left:15px;">Numerical Rating</th>
-            <th bgcolor="#101820" style="color:white;padding-left:15px;">Descriptive Rating</th>
 			<th bgcolor="#101820" style="color:white;padding-left:15px;">Report</th>
         </tr>
     </thead>
@@ -29,11 +27,9 @@ $caller=new category();
 			<tr role="row">
 				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;" ><?php echo $counter;$counter++;?></td> 
 				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;"><?php echo $datatableoutputfetch["category_name"];?></td> 
-				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;"><?php echo $datatableoutputfetch["price"];?></td>  
-				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;"><?php echo $datatableoutputfetch["stocks"];?></td> 
 				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;">
-					<button onclick="openUpdateModal(`<?php echo $datatableoutputfetch['id'];?>`,`<?php echo $datatableoutputfetch['category_name'];?>`,`<?php echo $datatableoutputfetch['price'];?>`,`<?php echo $datatableoutputfetch['stocks'];?>`);" id="summaryReport"  class="btn btn-success btn-sm mt-1" style="width:100px">UPDATE</button>
-					<button onclick="deletecategory(`<?php echo $datatableoutputfetch['id'];?>`);" id="summaryReport"  class="btn btn-success btn-sm mt-1" style="width:100px">DELETE</button>
+					<button onclick="openUpdateModal(`<?php echo $datatableoutputfetch['category_id'];?>`,`<?php echo $datatableoutputfetch['category_name'];?>`);" id="summaryReport"  class="btn btn-success btn-sm mt-1" style="width:100px">UPDATE</button>
+					<button onclick="deletecategory(`<?php echo $datatableoutputfetch['category_id'];?>`);" id="summaryReport"  class="btn btn-success btn-sm mt-1" style="width:100px">DELETE</button>
 				</td> 
 			</tr>  
 			<?php

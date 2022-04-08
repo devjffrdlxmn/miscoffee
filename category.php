@@ -59,7 +59,7 @@
   <div class="content-wrapper">
     <section class="content-header">
       <div class="container-fluid">
-        <h1 class="text-success text-center">Add-ons Page</h1>
+        <h1 class="text-success text-center">Category Page</h1>
       </div><!-- /.container-fluid -->
     </section>
 
@@ -164,8 +164,6 @@ var ajaxau = new XMLHttpRequest();
 function addcategory(){
 	//getting values of inputs
 	var name = _("name").value;
-  var price = _("price").value;
-  var stock = _("stock").value;
 
   if(name==""){
     //sweetalert function
@@ -176,8 +174,6 @@ function addcategory(){
 	//send value to server
 	var formdata = new FormData();
 	formdata.append("name", name);
-  formdata.append("price", price);
-  formdata.append("stock", stock);
 	
 	ajaxau.upload.addEventListener("progress", progressHandlerau, false);
 	ajaxau.addEventListener("load", completeHandlerau, false);
@@ -225,13 +221,9 @@ function abortHandlerau(event){
 var ajaxup = new XMLHttpRequest();
 function updatecategory(){
 
-  
-
 	//getting values of inputs
   var updateid = _("updateid").value;
 	var updatename = _("updatename").value;
-  var updateprice = _("updateprice").value;
-  var updatestock = _("updatestock").value;
 
   if(updatename==""){
     //sweetalert function
@@ -243,9 +235,6 @@ function updatecategory(){
 	var formdata = new FormData();
   formdata.append("id", updateid);
 	formdata.append("name", updatename);
-  formdata.append("price", updateprice);
-  formdata.append("stock", updatestock);
-	
 	ajaxup.upload.addEventListener("progress", progressHandlerup, false);
 	ajaxup.addEventListener("load", completeHandlerup, false);
 	ajaxup.addEventListener("error", errorHandlerup, false);

@@ -79,7 +79,7 @@
                 'updateid'=>$id,
                 'updatenamerec'=>$name
             ];
-            $sql = "UPDATE tbl_category  SET category_name=:updatenamerec WHERE id=:updateid";
+            $sql = "UPDATE tbl_category  SET category_name=:updatenamerec WHERE category_id=:updateid";
 			$stmt = $this->db->prepare($sql);
 			$stmt->execute($data);
             if($stmt){
