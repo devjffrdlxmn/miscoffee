@@ -167,6 +167,12 @@ function addAddons(){
   var price = _("price").value;
   var stock = _("stock").value;
 
+  if(name==""){
+    //sweetalert function
+	  warningfunction("Enter details!");
+    return false;
+  }
+
 	//send value to server
 	var formdata = new FormData();
 	formdata.append("name", name);
@@ -188,12 +194,20 @@ function completeHandlerau(event){
   var status=event.target.responseText;
 
   if(status==1){
-    loading();
+    //loading();
+    success("Successfully add data!");
     jQuery('#addonsDiv').load('addons_data.php', 'f' + (Math.random()*100000));
+    closebtn();
   }
   else if(status==0){
     //sweetalert function
 	  errorfunction("Error in saving data!");
+    closebtn();
+  }
+  else if(status==2){
+    //sweetalert function
+	  warningfunction("Existing product!");
+    closebtn();
   }
 
 }
@@ -210,11 +224,20 @@ function abortHandlerau(event){
 //START OF UPDATE ADDONS// 
 var ajaxup = new XMLHttpRequest();
 function updateAddons(){
+
+  
+
 	//getting values of inputs
   var updateid = _("updateid").value;
 	var updatename = _("updatename").value;
   var updateprice = _("updateprice").value;
   var updatestock = _("updatestock").value;
+
+  if(updatename==""){
+    //sweetalert function
+	  warningfunction("Enter details!");
+    return false;
+  }
 
 	//send value to server
 	var formdata = new FormData();
@@ -238,12 +261,20 @@ function completeHandlerup(event){
   var status=event.target.responseText;
 
   if(status==1){
-    loading();
+    //loading();
+    success("Successfully update data!");
     jQuery('#addonsDiv').load('addons_data.php', 'f' + (Math.random()*100000));
+    closebtn();
   }
   else if(status==0){
     //sweetalert function
 	  errorfunction("Error in saving data!");
+    closebtn();
+  }
+  else if(status==2){
+    //sweetalert function
+	  warningfunction("Existing product!");
+    closebtn();
   }
 
 }
@@ -282,8 +313,10 @@ function completeHandler(event){
   var status=event.target.responseText;
 
   if(status==1){
-    loading();
+    //loading();
+    success("Successfully delete data!");
     jQuery('#addonsDiv').load('addons_data.php', 'f' + (Math.random()*100000));
+    
   }
   else if(status==0){
     //sweetalert function

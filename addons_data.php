@@ -32,8 +32,8 @@ $caller=new addOns();
 				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;"><?php echo $datatableoutputfetch["price"];?></td>  
 				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;"><?php echo $datatableoutputfetch["stocks"];?></td> 
 				<td role="cell" bgcolor="#FFF" style="vertical-align: middle;text-align:center;">
-					<button onclick="openUpdateModal(`<?php echo $datatableoutputfetch['id'];?>`,`<?php echo $datatableoutputfetch['addons_name'];?>`,`<?php echo $datatableoutputfetch['price'];?>`,`<?php echo $datatableoutputfetch['stocks'];?>`);" id="summaryReport"  class="btn btn-success btn-sm" style="width:100px">UPDATE</button>
-					<button onclick="deleteAddons(`<?php echo $datatableoutputfetch['id'];?>`);" id="summaryReport"  class="btn btn-success btn-sm" style="width:100px">DELETE</button>
+					<button onclick="openUpdateModal(`<?php echo $datatableoutputfetch['id'];?>`,`<?php echo $datatableoutputfetch['addons_name'];?>`,`<?php echo $datatableoutputfetch['price'];?>`,`<?php echo $datatableoutputfetch['stocks'];?>`);" id="summaryReport"  class="btn btn-success btn-sm mt-1" style="width:100px">UPDATE</button>
+					<button onclick="deleteAddons(`<?php echo $datatableoutputfetch['id'];?>`);" id="summaryReport"  class="btn btn-success btn-sm mt-1" style="width:100px">DELETE</button>
 				</td> 
 			</tr>  
 			<?php
@@ -58,5 +58,5 @@ $caller=new addOns();
     });
 
     //cloasing loading sweetalert after loading the table
-    swal.close()
+    //swal.close()
 </script>
