@@ -52,15 +52,41 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-       <button class="btn btn-success"><i class="bi bi-plus-square-fill"></i>Add Product</button>
-       <div id="productFetch"></div>
+        <h1 class="text text-center text-success">PRODUCT</h1>
+        <button class="btn btn-success" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Product</button>
 
+        <select id="selectCategory" class="form-inline w-25">
+          <option disabled selected="true">Select Category</option>
+          <option value="All">All</option>
+          <option value="milktea">Milktea</option>
+          <option value="Coffee Blend">Coffee Blend</option>
+          <option value="Frappe">Frappe</option>
+          <option value="Fruit Selection">Fruit Selection</option>
+          <option value="Snacks">Snacks</option>
+          <option value="Rice">Rice</option>
+        </select>
+        <select id="selectType" class="form-inline w-25">
+          <option disabled selected="true">Select Type</option>
+          <option value="All">All</option>
+          <option value="Drink">Drink</option>
+          <option value="Meal">Meal</option>
+        </select>
 
+        <!-- DATA TABLE -->
+        <div id="productFetch"></div>
+        <!-- END DATA TABLE -->
+
+        <?php include('modals/product_modals.php'); ?>
+       
 
       </div>
     </section>
     <!-- /.content -->
+
+  
   </div>
+
+
 
 
   <!-- /.content-wrapper -->
@@ -73,8 +99,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
@@ -112,15 +136,37 @@
 <script>
  jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000));
 
+</script>
+
+<script>
+
+var addModal = document.getElementById("AddModal");
+function openAddModal()
+{
+  addModal.style.display = "block";
+}
 
 
+var updateModal = document.getElementById("updateModal");
+function openUpdateModal(id,name,price,stocks,category,type)
+{
+  updateModal.style.display = "block";
+  document.getElementById("updateProductId").value=id;
+  document.getElementById("updateProductName").value=name;
+  document.getElementById("updateProductPrice").value=price;
+  document.getElementById("updateProductStocks").value=stocks;
+  document.getElementById("updateProductCategory").value=category;
+  document.getElementById("updateProductType").value=type;
+
+}
 
 
-
-
-
-
-
+// When the user clicks button close
+function closebtn() 
+{
+    addModal.style.display = "none";
+    updateModal.style.display = "none";
+}  
 </script>
 
 </body>
