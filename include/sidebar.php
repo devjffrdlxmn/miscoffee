@@ -29,7 +29,7 @@
          
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="product.php" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>Product Page </p>
             </a>

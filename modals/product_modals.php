@@ -26,12 +26,9 @@
                 <label for="addProductCategory">Product Category</label>
                 <select id="addProductCategory" class="form-control">
                     <option disabled selected="true">Select Category</option>
-                    <option value="milktea">Milktea</option>
-                    <option value="Coffee Blend">Coffee Blend</option>
-                    <option value="Frappe">Frappe</option>
-                    <option value="Fruit Selection">Fruit Selection</option>
-                    <option value="Snacks">Snacks</option>
-                    <option value="Rice">Rice</option>
+                    <?php foreach($categories as $category){?>
+                        <option value="<?php echo $category['category_name'];?>"><?php echo $category['category_name'];?></option>
+                    <?php }?>
                 </select>
             </div>
 
@@ -39,8 +36,9 @@
                 <label for="addProductType">Product Type</label>
                 <select id="addProductType" class="form-control">
                     <option disabled selected="true">Select Type</option>
-                    <option value="Drink">Drink</option>
-                    <option value="Meal">Meal</option>
+                    <?php foreach($types as $type){?>
+                        <option value="<?php echo $type['type_name'];?>"><?php echo $type['type_name'];?></option>
+                    <?php }?>
                 </select>
             </div>
             
@@ -83,12 +81,9 @@
                 <label for="updateProductCategory">Product Category</label>
                 <select id="updateProductCategory" class="form-control">
                     <option disabled selected="true">Select Category</option>
-                    <option value="milktea">Milktea</option>
-                    <option value="Coffee Blend">Coffee Blend</option>
-                    <option value="Frappe">Frappe</option>
-                    <option value="Fruit Selection">Fruit Selection</option>
-                    <option value="Snacks">Snacks</option>
-                    <option value="Rice">Rice</option>
+                    <?php foreach($categories as $category){?>
+                        <option value="<?php echo $category['category_name'];?>"><?php echo $category['category_name'];?></option>
+                    <?php }?>
                 </select>
             </div>
 
@@ -96,8 +91,9 @@
                 <label for="updateProductType">Product Type</label>
                 <select id="updateProductType" class="form-control">
                     <option disabled selected="true">Select Type</option>
-                    <option value="Drink">Drink</option>
-                    <option value="Meal">Meal</option>
+                    <?php foreach($types as $type){?>
+                        <option value="<?php echo $type['type_name'];?>"><?php echo $type['type_name'];?></option>
+                    <?php }?>
                 </select>
             </div>
             

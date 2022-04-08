@@ -2,6 +2,7 @@
     include('model/productModel.php');
     $product = new Product();
     $products = $product->getProductInfo();
+
 ?>
 <table  id="myTable" class="table table-stripped ">
     <thead>

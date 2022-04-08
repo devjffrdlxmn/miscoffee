@@ -1,4 +1,14 @@
+<?php
+include('model/categoryModel.php');include('model/typeModel.php');
+//Category data
+$category = new category();
+$categories = $category->categoryFunction();
+//type Data
+$type = new Type();
+$types = $type->typeFunction();
 
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,18 +68,18 @@
         <select id="selectCategory" class="form-inline w-25">
           <option disabled selected="true">Select Category</option>
           <option value="All">All</option>
-          <option value="milktea">Milktea</option>
-          <option value="Coffee Blend">Coffee Blend</option>
-          <option value="Frappe">Frappe</option>
-          <option value="Fruit Selection">Fruit Selection</option>
-          <option value="Snacks">Snacks</option>
-          <option value="Rice">Rice</option>
+
+          <?php foreach($categories as $category){?>
+            <option value="<?php echo $category['category_name'];?>"><?php echo $category['category_name'];?></option>
+          <?php }?>
+
         </select>
         <select id="selectType" class="form-inline w-25">
           <option disabled selected="true">Select Type</option>
           <option value="All">All</option>
-          <option value="Drink">Drink</option>
-          <option value="Meal">Meal</option>
+          <?php foreach($types as $type){?>
+            <option value="<?php echo $type['type_name'];?>"><?php echo $type['type_name'];?></option>
+          <?php }?>
         </select>
 
         <!-- DATA TABLE -->
@@ -146,6 +156,74 @@ function openAddModal()
   addModal.style.display = "block";
 }
 
+$(document).on("click", "#addProduct", function() { 
+
+  $.ajax({
+      url: "productCheck.php",
+      type: "POST",
+      cache: false,
+      data:{
+          productName: $('#addProductName').val(),
+      },
+      success: function(productCheckData){
+          if(productCheckData == 1)
+          {
+            warningfunction('Product is already exist!');   
+          }
+          else{
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success m-1 ',
+                cancelButton: 'btn btn-danger '
+            },
+            buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "you want to add this data?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel   ',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                // $.ajax({
+                //     url: "candidateAdd.php",
+                //     type: "POST",
+                //     cache: false,
+                //     data:{
+                //         name: $('#addName').val(),
+                //         position : $('#addPosition').val(),
+                //         type: $('#addType').val(),
+                //     },
+                //     success: function(data){
+                //         if(data == 1)
+                //         {
+                //             success('Data Added successfully!');
+                //             addModal.style.display = "none";
+                //             jQuery('#candidateData').load('candidateData.php', 'f' + (Math.random()*100000));  
+                            
+                //         }
+                //         else{
+                //             errorfunction('Data Adding Failed!');
+                //         }
+                //     }
+                // });
+            }   
+              else if (result.dismiss === Swal.DismissReason.cancel){}
+              })        
+          }
+      }
+  });
+    
+
+            
+       
+        	
+});
+
 
 var updateModal = document.getElementById("updateModal");
 function openUpdateModal(id,name,price,stocks,category,type)
@@ -166,6 +244,7 @@ function closebtn()
 {
     addModal.style.display = "none";
     updateModal.style.display = "none";
+    
 }  
 </script>
 

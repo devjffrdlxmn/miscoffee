@@ -32,11 +32,22 @@
             $products = $stmt->fetchAll();
 			return $products;
         }
-      
-        
-	
 
-		
+		function checkProductExist($productName)
+		{
+			$data=array();
+            $sql = "SELECT product_name FROM tbl_product WHERE product_name=?";
+			$stmt = $this->db->prepare($sql);
+			$stmt->execute([$productName]);
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+			if($data>0){
+                return "1";
+            }
+            else{
+                return "0"; 
+            }
+
+		}	
 	}	
 	
 
