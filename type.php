@@ -1,14 +1,4 @@
-<?php
-include('model/categoryModel.php');include('model/typeModel.php');
-//Category data
-$category = new category();
-$categories = $category->categoryFunction();
-//type Data
-$type = new Type();
-$types = $type->fetch();
 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,30 +53,14 @@ $types = $type->fetch();
     <section class="content">
       <div class="container-fluid">
         <h1 class="text text-center text-success">PRODUCT</h1>
-        <button class="btn btn-success" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Product</button>
+        <button class="btn btn-success" onclick="openAddModal()"><i class="bi bi-plus-square-fill"></i>Add Type</button>
 
-        <select id="selectCategory" class="form-inline w-25">
-          <option disabled selected="true">Select Category</option>
-          <option value="All">All</option>
-
-          <?php foreach($categories as $category){?>
-            <option value="<?php echo $category['category_name'];?>"><?php echo $category['category_name'];?></option>
-          <?php }?>
-
-        </select>
-        <select id="selectType" class="form-inline w-25">
-          <option disabled selected="true">Select Type</option>
-          <option value="All">All</option>
-          <?php foreach($types as $type){?>
-            <option value="<?php echo $type['type_name'];?>"><?php echo $type['type_name'];?></option>
-          <?php }?>
-        </select>
 
         <!-- DATA TABLE -->
-        <div id="productFetch"></div>
+        <div id="typeFetch"></div>
         <!-- END DATA TABLE -->
 
-        <?php include('modals/product_modals.php'); ?>
+        <?php include('modals/type_modal.php'); ?>
        
 
       </div>
@@ -149,30 +123,30 @@ $types = $type->fetch();
 
 
 <script>
- jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000));
+ jQuery('#typeFetch').load('typeFetch.php', 'f' + (Math.random()*100000));
 
 </script>
 
 <script>
 
-var addModal = document.getElementById("AddModal");
+var addModal = document.getElementById("addModal");
 function openAddModal()
 {
   addModal.style.display = "block";
 }
 
-$(document).on("click", "#addProduct", function() { 
+$(document).on("click", "#addType", function() { 
   $.ajax({
-      url: "productCheck.php",
+      url: "typeCheck.php",
       type: "POST",
       cache: false,
       data:{
-          productName: $('#addProductName').val(),
+        typeName: $('#addTypeName').val(),
       },
-      success: function(productCheckData){
-          if(productCheckData == 1)
+      success: function(typeCheckData){
+          if(typeCheckData == 1)
           {
-            warningfunction('Product is already exist!');   
+            warningfunction('Type is already exist!');   
           }
           else{
             const swalWithBootstrapButtons = Swal.mixin({
@@ -193,22 +167,20 @@ $(document).on("click", "#addProduct", function() {
             }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "productSave.php",
+                    url: "typeSave.php",
                     type: "POST",
                     cache: false,
                     data:{
-                      productName: $('#addProductName').val(),
-                      productPrice : $('#addProductPrice').val(),
-                      productStocks: $('#addProductStocks').val(),
-                      productCategory: $('#addProductCategory').val(),
-                      productType: $('#addProductType').val()
+                        typeName: $('#addTypeName').val(),
+               
                     },
                     success: function(data){
                         if(data == 1)
                         {
                             success('Data Added successfully!');
                             addModal.style.display = "none";
-                            jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000)); 
+                            jQuery('#typeFetch').load('typeFetch.php', 'f' + (Math.random()*100000));
+
                         }
                         else{
                             alert(data);
@@ -225,20 +197,20 @@ $(document).on("click", "#addProduct", function() {
 });
 
 
+
+
+
 var updateModal = document.getElementById("updateModal");
-function openUpdateModal(id,name,price,stocks,category,type)
+function openUpdateModal(id,name)
 {
   updateModal.style.display = "block";
-  document.getElementById("updateProductId").value=id;
-  document.getElementById("updateProductName").value=name;
-  document.getElementById("updateProductPrice").value=price;
-  document.getElementById("updateProductStocks").value=stocks;
-  document.getElementById("updateProductCategory").value=category;
-  document.getElementById("updateProductType").value=type;
+  document.getElementById("updateTypeId").value=id;
+  document.getElementById("updateTypeName").value=name;
+
 }
 
 
-$(document).on("click", "#updateProduct", function() { 
+$(document).on("click", "#updateType", function() { 
     const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
         confirmButton: 'btn btn-success m-1 ',
@@ -257,23 +229,20 @@ $(document).on("click", "#updateProduct", function() {
     }).then((result) => {
     if (result.isConfirmed) {
         $.ajax({
-            url: "productUpdate.php",
+            url: "typeUpdate.php",
             type: "POST",
             cache: false,
             data:{
-              productId: $('#updateProductId').val(),
-              productName: $('#updateProductName').val(),
-              productPrice : $('#updateProductPrice').val(),
-              productStocks: $('#updateProductStocks').val(),
-              productCategory: $('#updateProductCategory').val(),
-              productType: $('#updateProductType').val()
+              typeId: $('#updateTypeId').val(),
+              typeName: $('#updateTypeName').val()
             },
             success: function(data){
                 if(data == 1)
                 {
                     success('Data updated successfully!');
                     updateModal.style.display = "none";
-                    jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000)); 
+                    jQuery('#typeFetch').load('typeFetch.php', 'f' + (Math.random()*100000));
+
                 }
                 else{
                     alert(data);
@@ -287,6 +256,8 @@ $(document).on("click", "#updateProduct", function() {
           
    	
 });
+
+
 
 function Delete(id)
 {
@@ -308,18 +279,17 @@ function Delete(id)
     }).then((result) => {
     if (result.isConfirmed) {
         $.ajax({
-            url: "productDelete.php",
+            url: "typeDelete.php",
             type: "POST",
             cache: false,
             data:{
-              productId: id,
-              
+              typeId: id,
             },
             success: function(data){
                 if(data == 1)
                 {
                     success('Data Deleted successfully!');
-                    jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000)); 
+                    jQuery('#typeFetch').load('typeFetch.php', 'f' + (Math.random()*100000));
                 }
                 else{
                     alert(data);
@@ -331,6 +301,9 @@ function Delete(id)
       else if (result.dismiss === Swal.DismissReason.cancel){}
   })
 }
+
+
+
 
 
 // When the user clicks button close
