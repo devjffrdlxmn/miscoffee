@@ -27,7 +27,7 @@
                 <select id="addProductCategory" class="form-control">
                     <option disabled selected="true">Select Category</option>
                     <?php foreach($categories as $category){?>
-                        <option value="<?php echo $category['category_name'];?>"><?php echo $category['category_name'];?></option>
+                        <option value="<?php echo $category['category_id'];?>"><?php echo $category['category_name'];?></option>
                     <?php }?>
                 </select>
             </div>
@@ -37,7 +37,7 @@
                 <select id="addProductType" class="form-control">
                     <option disabled selected="true">Select Type</option>
                     <?php foreach($types as $type){?>
-                        <option value="<?php echo $type['type_name'];?>"><?php echo $type['type_name'];?></option>
+                        <option value="<?php echo $type['type_id'];?>"><?php echo $type['type_name'];?></option>
                     <?php }?>
                 </select>
             </div>
@@ -82,7 +82,7 @@
                 <select id="updateProductCategory" class="form-control">
                     <option disabled selected="true">Select Category</option>
                     <?php foreach($categories as $category){?>
-                        <option value="<?php echo $category['category_name'];?>"><?php echo $category['category_name'];?></option>
+                        <option value="<?php echo $category['category_id'];?>"><?php echo $category['category_name'];?></option>
                     <?php }?>
                 </select>
             </div>
@@ -92,7 +92,7 @@
                 <select id="updateProductType" class="form-control">
                     <option disabled selected="true">Select Type</option>
                     <?php foreach($types as $type){?>
-                        <option value="<?php echo $type['type_name'];?>"><?php echo $type['type_name'];?></option>
+                        <option value="<?php echo $type['type_id'];?>"><?php echo $type['type_name'];?></option>
                     <?php }?>
                 </select>
             </div>
@@ -101,7 +101,7 @@
         </div>
         <div class="modal-footer">
             <button onclick="closebtn();" type="button" class="btn btn-danger btn-s">CLOSE</button>
-            <button type="button" class="btn btn-success" id="addProduct">SAVE</button>
+            <button type="button" class="btn btn-success" id="updateProduct">SAVE</button>
         </div>       
     </div>
 </div> 

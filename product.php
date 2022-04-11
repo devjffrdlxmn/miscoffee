@@ -141,7 +141,12 @@ $types = $type->typeFunction();
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- Sweet Alert -->
+<script src="dist/sweetalert/sweetalert_library.js"></script>
+<script src="dist/sweetalert/sweet_alert.js"></script>
+
+
 
 <script>
  jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000));
@@ -157,7 +162,6 @@ function openAddModal()
 }
 
 $(document).on("click", "#addProduct", function() { 
-
   $.ajax({
       url: "productCheck.php",
       type: "POST",
@@ -178,7 +182,6 @@ $(document).on("click", "#addProduct", function() {
             },
             buttonsStyling: false
             })
-
             swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
             text: "you want to add this data?",
@@ -189,39 +192,36 @@ $(document).on("click", "#addProduct", function() {
             reverseButtons: true
             }).then((result) => {
             if (result.isConfirmed) {
-                // $.ajax({
-                //     url: "candidateAdd.php",
-                //     type: "POST",
-                //     cache: false,
-                //     data:{
-                //         name: $('#addName').val(),
-                //         position : $('#addPosition').val(),
-                //         type: $('#addType').val(),
-                //     },
-                //     success: function(data){
-                //         if(data == 1)
-                //         {
-                //             success('Data Added successfully!');
-                //             addModal.style.display = "none";
-                //             jQuery('#candidateData').load('candidateData.php', 'f' + (Math.random()*100000));  
-                            
-                //         }
-                //         else{
-                //             errorfunction('Data Adding Failed!');
-                //         }
-                //     }
-                // });
+                $.ajax({
+                    url: "productSave.php",
+                    type: "POST",
+                    cache: false,
+                    data:{
+                      productName: $('#addProductName').val(),
+                      productPrice : $('#addProductPrice').val(),
+                      productStocks: $('#addProductStocks').val(),
+                      productCategory: $('#addProductCategory').val(),
+                      productType: $('#addProductType').val()
+                    },
+                    success: function(data){
+                        if(data == 1)
+                        {
+                            success('Data Added successfully!');
+                            addModal.style.display = "none";
+                            jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000)); 
+                        }
+                        else{
+                            alert(data);
+                            errorfunction('Data Adding Failed!');
+                        }
+                    }
+                });
             }   
               else if (result.dismiss === Swal.DismissReason.cancel){}
               })        
           }
       }
-  });
-    
-
-            
-       
-        	
+  });   	
 });
 
 
@@ -235,7 +235,101 @@ function openUpdateModal(id,name,price,stocks,category,type)
   document.getElementById("updateProductStocks").value=stocks;
   document.getElementById("updateProductCategory").value=category;
   document.getElementById("updateProductType").value=type;
+}
 
+
+$(document).on("click", "#updateProduct", function() { 
+    const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success m-1 ',
+        cancelButton: 'btn btn-danger '
+    },
+    buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "you want to add this data?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Confirm',
+    cancelButtonText: 'Cancel   ',
+    reverseButtons: true
+    }).then((result) => {
+    if (result.isConfirmed) {
+        $.ajax({
+            url: "productUpdate.php",
+            type: "POST",
+            cache: false,
+            data:{
+              productId: $('#updateProductId').val(),
+              productName: $('#updateProductName').val(),
+              productPrice : $('#updateProductPrice').val(),
+              productStocks: $('#updateProductStocks').val(),
+              productCategory: $('#updateProductCategory').val(),
+              productType: $('#updateProductType').val()
+            },
+            success: function(data){
+                if(data == 1)
+                {
+                    success('Data updated successfully!');
+                    updateModal.style.display = "none";
+                    jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000)); 
+                }
+                else{
+                    alert(data);
+                    errorfunction('Data Updating Failed!');
+                }
+            }
+        });
+    }   
+      else if (result.dismiss === Swal.DismissReason.cancel){}
+      })        
+          
+   	
+});
+
+function Delete(id)
+{
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success m-1 ',
+        cancelButton: 'btn btn-danger '
+    },
+    buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "you want to add this data?",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Confirm',
+    cancelButtonText: 'Cancel   ',
+    reverseButtons: true
+    }).then((result) => {
+    if (result.isConfirmed) {
+        $.ajax({
+            url: "productDelete.php",
+            type: "POST",
+            cache: false,
+            data:{
+              productId: id,
+              
+            },
+            success: function(data){
+                if(data == 1)
+                {
+                    success('Data Deleted successfully!');
+                    jQuery('#productFetch').load('productFetch.php', 'f' + (Math.random()*100000)); 
+                }
+                else{
+                    alert(data);
+                    errorfunction('Data Deleting Failed!');
+                }
+            }
+        });
+    }   
+      else if (result.dismiss === Swal.DismissReason.cancel){}
+  })
 }
 
 
