@@ -1,7 +1,8 @@
 <?php
     include('model/productModel.php');
     $product = new Product();
-    $products = $product->getProductInfo();
+    $products = $product->fetch();
+
 ?>
 <table  id="myTable" class="table table-stripped ">
     <thead>
@@ -31,8 +32,8 @@
                 <td  role="cell"bgcolor="#FFF"><?php echo $product['type_name']; ?></td>  
                 <td  role="cell" bgcolor="#FFF" >
                     <button type="button"  onclick="openUpdateModal(`<?php echo $product['id']; ?>`,`<?php echo $product['name']; ?>`,`<?php echo $product['price']; ?>`,
-                    `<?php echo $product['stocks']; ?>`,`<?php echo $product['category_name']; ?>`,`<?php echo $product['type_name']; ?>`)" class="btn btn-success btn-sm">Update</button>
-                    <button type="button"  onclick="openDeleteModal(`<?php echo $product['id']; ?>`)" class="btn btn-danger btn-sm">Delete</button>
+                    `<?php echo $product['stocks']; ?>`,`<?php echo $product['category_id']; ?>`,`<?php echo $product['type_id']; ?>`)" class="btn btn-success btn-sm">Update</button>
+                    <button type="button"  onclick="Delete(`<?php echo $product['id']; ?>`)" class="btn btn-danger btn-sm">Delete</button>
                 </td> 
             </tr>
     <?php
